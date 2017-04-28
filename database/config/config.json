@@ -1,0 +1,14 @@
+{
+  "development": {
+    "url": "postgres://oljcwllz:LU1Rr7smx61Lw2n0zgc15mKEBSkI5s2d@stampy.db.elephantsql.com:5432/oljcwllz",
+    "dialect": "postgres"
+  },
+  "test": {
+    "url": "postgres://oljcwllz:LU1Rr7smx61Lw2n0zgc15mKEBSkI5s2d@stampy.db.elephantsql.com:5432/oljcwllz",
+    "dialect": "postgres"
+  },
+  "production": {
+    "url": "postgres://oljcwllz:LU1Rr7smx61Lw2n0zgc15mKEBSkI5s2d@stampy.db.elephantsql.com:5432/oljcwllz",
+    "dialect": "postgres"
+  }
+}
