@@ -15371,7 +15371,7 @@
 	  /* script */
 	  __webpack_require__(303),
 	  /* template */
-	  __webpack_require__(308),
+	  __webpack_require__(312),
 	  /* scopeId */
 	  null,
 	  /* cssModules */
@@ -15470,19 +15470,27 @@
 
 	var _Greeting2 = _interopRequireDefault(_Greeting);
 
+	var _DatePicker = __webpack_require__(308);
+
+	var _DatePicker2 = _interopRequireDefault(_DatePicker);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	exports.default = {
 	  name: 'app',
 	  components: {
-	    Greeting: _Greeting2.default
+	    Greeting: _Greeting2.default,
+	    DatePicker: _DatePicker2.default
 	  }
-	}; //
-	//
-	//
-	//
-	//
-	//
+	};
 
 /***/ }),
 /* 304 */
@@ -15574,12 +15582,142 @@
 /* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
+	
+	/* styles */
+	__webpack_require__(309)
+
+	var Component = __webpack_require__(302)(
+	  /* script */
+	  __webpack_require__(310),
+	  /* template */
+	  __webpack_require__(311),
+	  /* scopeId */
+	  "data-v-815a953c",
+	  /* cssModules */
+	  null
+	)
+	Component.options.__file = "/Users/laynefaler/Desktop/ManOfTech/GoHarvey/DatePicker/app/components/DatePicker.vue"
+	if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+	if (Component.options.functional) {console.error("[vue-loader] DatePicker.vue: functional components are not supported with templates, they should use render functions.")}
+
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-815a953c", Component.options)
+	  } else {
+	    hotAPI.reload("data-v-815a953c", Component.options)
+	  }
+	})()}
+
+	module.exports = Component.exports
+
+
+/***/ }),
+/* 309 */
+/***/ (function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 310 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+
+	exports.default = {
+	  name: 'datepicker',
+	  data: function data() {
+	    return {};
+	  }
+	};
+
+/***/ }),
+/* 311 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _vm._m(0)
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "datepicker"
+	  }, [_c('div', {
+	    staticClass: "panel panel-default"
+	  }, [_c('div', {
+	    staticClass: "panel-heading"
+	  }, [_c('div', {
+	    staticClass: "panel-title"
+	  }, [_vm._v("Date Controls")]), _vm._v(" "), _c('div', {
+	    staticClass: "panel-body"
+	  }, [_c('div', {
+	    staticClass: "row"
+	  }, [_c('div', {
+	    staticClass: "col-md-12"
+	  }, [_c('div', {
+	    staticClass: "form-group form-group-default input-group col-sm-12"
+	  }, [_c('label', [_vm._v("Check In")]), _vm._v(" "), _c('input', {
+	    staticClass: "form-control",
+	    attrs: {
+	      "type": "email",
+	      "placeholder": "Pick a date",
+	      "id": "datepicker-component2"
+	    }
+	  }), _vm._v(" "), _c('span', {
+	    staticClass: "input-group-addon"
+	  }, [_c('i', {
+	    staticClass: "fa fa-calendar"
+	  })])])])])])])])])
+	}]}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-815a953c", module.exports)
+	  }
+	}
+
+/***/ }),
+/* 312 */
+/***/ (function(module, exports, __webpack_require__) {
+
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    attrs: {
 	      "id": "app"
 	    }
-	  }, [_c('greeting')], 1)
+	  }, [_c('greeting'), _vm._v(" "), _c('DatePicker')], 1)
 	},staticRenderFns: []}
 	module.exports.render._withStripped = true
 	if (false) {

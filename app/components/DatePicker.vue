@@ -1,6 +1,25 @@
 <template>
   <div class="datepicker">
-      <h1>{{date}}</h1>
+      <div class="panel panel-default">
+          <div class="panel-heading">
+              <div class="panel-title">Date Controls</div>
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-12">
+                    <div class="form-group form-group-default input-group col-sm-12">
+                      <label>Check In</label>
+                      <input type="email" class="form-control" placeholder="Pick a date" id="datepicker-component2">
+                      <span class="input-group-addon">
+                        <i class="fa fa-calendar"></i>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>       
+    </div>
   </div>
 </template>
 
@@ -9,7 +28,7 @@ export default {
   name: 'datepicker',
  data () {
     return {
-      date: 'Welcome to My Vue App'
+
     }
   }
 }
@@ -17,11 +36,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
-h1 {
-    text-align: center;
-    font-size: 32px;
-    color: white;
-    text-shadow: 2px 2px black;
-    margin-top: 80px;
-}
+  .panel {
+    margin: 200px auto;
+    width: 50%;
+    background-color: rgba(255,255,255,0.4);
+  }
 </style>
