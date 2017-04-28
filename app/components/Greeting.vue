@@ -22,5 +22,6 @@ h1 {
     font-size: 32px;
     color: white;
     text-shadow: 2px 2px black;
+    margin-top: 40px;
 }
 </style>
