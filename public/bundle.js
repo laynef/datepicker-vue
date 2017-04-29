@@ -15829,7 +15829,6 @@
 	var monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4: 'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September', 9: 'October', 10: 'November', 11: 'December' };
 	var daysToName = { 0: 'Sunday', 1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday' };
 	var startingYear = 2017;
-	var startingMonth = 28;
 	var startingDay = 1;
 
 	exports.default = {
@@ -15840,7 +15839,7 @@
 	      year: startingYear,
 	      month: monthToName,
 	      startingYear: 2017,
-	      startingMonth: 28
+	      startingMonth: 24208
 	    };
 	  }
 	};
@@ -15871,7 +15870,8 @@
 	    },
 	    on: {
 	      "click": function($event) {
-	        _vm.startingMonth--
+	        _vm.startingMonth--;
+	        _vm.startingMonth % 12 == 11 ? _vm.year-- : _vm.year;
 	      }
 	    }
 	  }, [_vm._v("«")]), _vm._v(" "), _c('th', {
@@ -15886,7 +15886,8 @@
 	    },
 	    on: {
 	      "click": function($event) {
-	        _vm.startingMonth++
+	        _vm.startingMonth++;
+	        _vm.startingMonth % 12 == 0 ? _vm.year++ : _vm.year;
 	      }
 	    }
 	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _vm._l((6), function(n) {
