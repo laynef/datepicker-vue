@@ -15828,6 +15828,12 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	var _ = __webpack_require__(357);
 	var isLeapYear = function isLeapYear(year) {
@@ -15839,23 +15845,23 @@
 	};
 	var startingDay = 1;
 
-	var viewCalendar = function viewCalendar(m, y) {
+	var viewCalendar = function viewCalendar(m, y, s) {
 	    var end = 0;
 	    var calendarDays = {};
 	    for (var _i = 0; _i < 35; _i++) {
 	        calendarDays[_i] = 0;
 	    }
-	    for (var _i2 = startingDay; _i2 <= daysInMonth(y)[m % 12]; _i2++) {
+	    for (var _i2 = s; _i2 <= daysInMonth(y)[m % 12]; _i2++) {
 	        calendarDays[_i2] = _i2;
 	    }
-	    for (var i = startingDay + daysInMonth(y)[m % 12]; i < 35; i++) {
+	    for (var i = s + daysInMonth(y)[m % 12]; i < 35; i++) {
 	        calendarDays[i] = i - daysInMonth(y)[m % 12];
 	    }
-	    for (var i = startingDay - 1; i >= 0; i--) {
+	    for (var i = s - 1; i >= 0; i--) {
 	        calendarDays[i] = daysInMonth(y)[(m - 1) % 12] - end;
 	        end++;
 	    }
-	    startingDay = startingDay + daysInMonth(y)[m % 12] % 7;
+	    s = s + daysInMonth(y)[m % 12] % 7;
 	    return _.chunk((0, _values2.default)(calendarDays), 7);
 	};
 
@@ -15868,7 +15874,8 @@
 	            year: 2017,
 	            month: monthToName,
 	            startingMonth: 24208,
-	            func: viewCalendar
+	            func: viewCalendar,
+	            startingDay: 1
 	        };
 	    }
 	};
@@ -15892,7 +15899,7 @@
 	    }
 	  }, [_c('table', {
 	    staticClass: " table-condensed"
-	  }, [_c('thead', [_c('tr', [_c('button', {
+	  }, [_c('thead', [_c('tr', [_c('th', {
 	    staticClass: "prev",
 	    staticStyle: {
 	      "visibility": "visible"
@@ -15908,7 +15915,7 @@
 	    attrs: {
 	      "colspan": "5"
 	    }
-	  }, [_vm._v(_vm._s(_vm.month[_vm.startingMonth % 12]) + " " + _vm._s(_vm.year))]), _vm._v(" "), _c('button', {
+	  }, [_vm._v(_vm._s(_vm.month[_vm.startingMonth % 12]) + " " + _vm._s(_vm.year))]), _vm._v(" "), _c('th', {
 	    staticClass: "next",
 	    staticStyle: {
 	      "visibility": "visible"
@@ -15919,7 +15926,7 @@
 	        _vm.startingMonth % 12 === 0 ? _vm.year++ : _vm.year;
 	      }
 	    }
-	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year)), function(array) {
+	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay)), function(array) {
 	    return _c('tr', _vm._l((array), function(item) {
 	      return _c('td', {
 	        staticClass: "day"

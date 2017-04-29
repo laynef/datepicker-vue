@@ -4,9 +4,15 @@
             <table class=" table-condensed">
                 <thead>
                     <tr>
-                        <button class="prev" style="visibility: visible;" v-on:click="startingMonth--; startingMonth % 12 === 11 ? year-- : year;">«</button>
+                        <th class="prev" style="visibility: visible;" v-on:click="
+                        startingMonth--; 
+                        startingMonth % 12 === 11 ? year-- : year;
+                        ">«</th>
                         <th colspan="5" class="datepicker-switch">{{month[startingMonth  % 12]}} {{year}}</th>
-                        <button class="next" style="visibility: visible;" v-on:click="startingMonth++; startingMonth % 12 === 0 ? year++ : year;">»</button>
+                        <th class="next" style="visibility: visible;" v-on:click="
+                        startingMonth++; 
+                        startingMonth % 12 === 0 ? year++ : year;
+                        ">»</th>
                     </tr>
                     <tr>
                         <th class="dow">Su</th>
@@ -19,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="array in func(startingMonth, year)">
+                    <tr v-for="array in func(startingMonth, year, startingDay)">
                         <td class="day" v-for="item in array">
                             <th>{{item}}</th>
                         </td>
@@ -37,23 +43,23 @@ const monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4:'M
 const daysInMonth = (year) => ({ 0: 31, 1: (isLeapYear(year) ? 29 : 28), 2: 31, 3: 30, 4: 31, 5: 30, 6: 31, 7: 31, 8: 30, 9: 31, 10: 30, 11: 31 })
 let startingDay = 1
 
-const viewCalendar = (m,y) => {
+const viewCalendar = (m,y,s) => {
     let end = 0
     let calendarDays = {}
     for (let i = 0; i < 35; i++) {
         calendarDays[i] = 0
     }
-    for (let i = startingDay; i <= daysInMonth(y)[m % 12]; i++) {
+    for (let i = s; i <= daysInMonth(y)[m % 12]; i++) {
         calendarDays[i] = i
     }
-    for (var i = startingDay + daysInMonth(y)[m % 12]; i < 35; i++) {
+    for (var i = s + daysInMonth(y)[m % 12]; i < 35; i++) {
         calendarDays[i] = i - (daysInMonth(y)[m % 12])
     }
-    for (var i = startingDay - 1; i >= 0; i--) {
+    for (var i = s - 1; i >= 0; i--) {
         calendarDays[i] = daysInMonth(y)[(m - 1) % 12] - end
         end++
     }
-    startingDay = startingDay + daysInMonth(y)[m % 12] % 7
+    s = s + daysInMonth(y)[m % 12] % 7
     return _.chunk(Object.values(calendarDays), 7)
 }
 
@@ -66,7 +72,8 @@ export default {
         year: 2017,
         month: monthToName,
         startingMonth: 24208,
-        func: viewCalendar
+        func: viewCalendar,
+        startingDay: 1
     }
   }
 }
