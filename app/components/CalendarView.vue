@@ -4,9 +4,9 @@
             <table class=" table-condensed">
                 <thead>
                     <tr>
-                        <button class="prev" style="visibility: visible;" v-on:click="startingMonth--; startingMonth % 12 == 11 ? year-- : year;">«</button>
+                        <button class="prev" style="visibility: visible;" v-on:click="startingMonth--; startingMonth % 12 === 11 ? year-- : year;">«</button>
                         <th colspan="5" class="datepicker-switch">{{month[startingMonth  % 12]}} {{year}}</th>
-                        <button class="next" style="visibility: visible;" v-on:click="startingMonth++; startingMonth % 12 == 0 ? year++ : year;">»</button>
+                        <button class="next" style="visibility: visible;" v-on:click="startingMonth++; startingMonth % 12 === 0 ? year++ : year;">»</button>
                     </tr>
                     <tr>
                         <th class="dow">Su</th>
@@ -18,9 +18,11 @@
                         <th class="dow">Sa</th>
                     </tr>
                 </thead>
-                <tbody v-for="n in 6">
-                    <tr v-for="day in days">
-                     <!--   {{<td class={{day.class}}>{{day.number}}</td>}} -->
+                <tbody>
+                    <tr v-for="n in 5">
+                        <td class="day" v-for="i in 7">
+                            <th>{{func[n][i]}}</th>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -29,22 +31,44 @@
 </template>
 
 <script>
+const _ = require('lodash')
 const isLeapYear = (year) => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
-const daysInMonth = (year) => ({ 1: 31, 2: (isLeapYear(year) ? 29 : 28), 3: 31, 4: 30, 5: 31, 6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31 })
 const monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4:'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September', 9: 'October', 10: 'November', 11: 'December' }
-const daysToName = { 0: 'Sunday', 1: 'Monday', 2: 'Tuesday', 3: 'Wednesday', 4: 'Thursday', 5: 'Friday', 6: 'Saturday' }
-let startingYear = 2017
+const daysInMonth = (year) => ({ 0: 31, 1: (isLeapYear(year) ? 29 : 28), 2: 31, 3: 30, 4: 31, 5: 30, 6: 31, 7: 31, 8: 30, 9: 31, 10: 30, 11: 31 })
 let startingDay = 1
+
+const viewCalendar = (m, y) => {
+    let end = 0
+    let calendarDays = {}
+    for (let i = 0; i < 35; i++) {
+        calendarDays[i] = 0
+    }
+    for (let i = startingDay; i <= daysInMonth(y)[m % 12]; i++) {
+        calendarDays[i] = i
+    }
+    for (var i = startingDay + daysInMonth(y)[m % 12]; i < 35; i++) {
+        calendarDays[i] = i - (daysInMonth(y)[m % 12])
+    }
+    for (var i = startingDay - 1; i >= 0; i--) {
+        calendarDays[i] = daysInMonth(y)[(m - 1) % 12] - end
+        end++
+    }
+    startingDay = startingDay + daysInMonth(y)[m % 12] % 7
+    return _.chunk(Object.values(calendarDays), 7)
+}
+
+let array = viewCalendar(24208, 2017)
 
 export default {
   name: 'calendar',
  data () {
     return {
-        n: 1,
-        year: startingYear,
+        n: 0,
+        i: 0,
+        year: 2017,
         month: monthToName,
-        startingYear: 2017,
-        startingMonth: 24208
+        startingMonth: 24208,
+        func: array
     }
   }
 }
