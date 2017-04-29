@@ -1,5 +1,6 @@
 <template>
   <div class="datepicker">
+    <CalendarView></CalendarView>
       <div class="panel panel-default">
           <div class="panel-heading">
               <div class="panel-title">Date Controls</div>
@@ -24,8 +25,13 @@
 </template>
 
 <script>
+import CalendarView from './CalendarView'
+
 export default {
   name: 'datepicker',
+  components: {
+    CalendarView
+  },
  data () {
     return {
 
