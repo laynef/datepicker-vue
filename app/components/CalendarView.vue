@@ -19,9 +19,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="n in 5">
-                        <td class="day" v-for="i in 7">
-                            <th>{{func[n][i]}}</th>
+                    <tr v-for="array in func(startingMonth, year)">
+                        <td class="day" v-for="item in array">
+                            <th>{{item}}</th>
                         </td>
                     </tr>
                 </tbody>
@@ -37,7 +37,7 @@ const monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4:'M
 const daysInMonth = (year) => ({ 0: 31, 1: (isLeapYear(year) ? 29 : 28), 2: 31, 3: 30, 4: 31, 5: 30, 6: 31, 7: 31, 8: 30, 9: 31, 10: 30, 11: 31 })
 let startingDay = 1
 
-const viewCalendar = (m, y) => {
+const viewCalendar = (m,y) => {
     let end = 0
     let calendarDays = {}
     for (let i = 0; i < 35; i++) {
@@ -57,8 +57,6 @@ const viewCalendar = (m, y) => {
     return _.chunk(Object.values(calendarDays), 7)
 }
 
-let array = viewCalendar(24208, 2017)
-
 export default {
   name: 'calendar',
  data () {
@@ -68,7 +66,7 @@ export default {
         year: 2017,
         month: monthToName,
         startingMonth: 24208,
-        func: array
+        func: viewCalendar
     }
   }
 }

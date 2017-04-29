@@ -15859,8 +15859,6 @@
 	    return _.chunk((0, _values2.default)(calendarDays), 7);
 	};
 
-	var array = viewCalendar(24208, 2017);
-
 	exports.default = {
 	    name: 'calendar',
 	    data: function data() {
@@ -15870,7 +15868,7 @@
 	            year: 2017,
 	            month: monthToName,
 	            startingMonth: 24208,
-	            func: array
+	            func: viewCalendar
 	        };
 	    }
 	};
@@ -15921,11 +15919,11 @@
 	        _vm.startingMonth % 12 === 0 ? _vm.year++ : _vm.year;
 	      }
 	    }
-	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((5), function(n) {
-	    return _c('tr', _vm._l((7), function(i) {
+	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year)), function(array) {
+	    return _c('tr', _vm._l((array), function(item) {
 	      return _c('td', {
 	        staticClass: "day"
-	      }, [_c('th', [_vm._v(_vm._s(_vm.func[n][i]))])])
+	      }, [_c('th', [_vm._v(_vm._s(item))])])
 	    }))
 	  }))])])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
