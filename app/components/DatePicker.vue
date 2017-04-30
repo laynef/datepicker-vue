@@ -30,8 +30,8 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr v-for="array in func(startingMonth, year, startingDay)">
-                          <td v-for="item in array">
+                      <tr class="center" v-for="array in func(startingMonth, year, startingDay)">
+                          <td class="center" v-for="item in array">
                               <th 
                               v-on:click="
                               day = item.day;
@@ -39,10 +39,10 @@
                               currentYear = item.year;
                               hidden = true;
                               "
-                              class="day"
+                              class="day center"
                               v-bind:class="{
                                     olds: (item.month != month[startingMonth % 12]),
-                                    active: item.day == day && item.month == month[startingMonth % 12]
+                                    active: item.day == day && item.month == currentMonth
                                 }">{{item.day}}</th>
                           </td>
                       </tr>
@@ -162,13 +162,22 @@ export default {
     .olds {
         color: rgb(175, 175, 175);
     }
-    th th:hover {
+    th {
+        width: 20px;
+    } 
+    th:hover {
       background: #6d5cae;
       color: white;
       cursor: pointer;
     }
+    .center {
+        margin: 0 auto;
+        text-align: center;
+    }
     .active {
         background-color: #6d5cae;
         color: white;
+        width: 20px;
+        margin: 0 auto;
     }
 </style>

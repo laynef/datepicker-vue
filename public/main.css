@@ -41,12 +41,21 @@ h1[data-v-d9b08e82] {
 .olds[data-v-815a953c] {
   color: #afafaf;
 }
-th th[data-v-815a953c]:hover {
+th[data-v-815a953c] {
+  width: 20px;
+}
+th[data-v-815a953c]:hover {
     background: #6d5cae;
     color: white;
     cursor: pointer;
 }
+.center[data-v-815a953c] {
+  margin: 0 auto;
+  text-align: center;
+}
 .active[data-v-815a953c] {
   background-color: #6d5cae;
   color: white;
+  width: 20px;
+  margin: 0 auto;
 }

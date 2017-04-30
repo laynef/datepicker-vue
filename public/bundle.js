@@ -33423,12 +33423,16 @@
 	      }
 	    }
 	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay)), function(array) {
-	    return _c('tr', _vm._l((array), function(item) {
-	      return _c('td', [_c('th', {
-	        staticClass: "day",
+	    return _c('tr', {
+	      staticClass: "center"
+	    }, _vm._l((array), function(item) {
+	      return _c('td', {
+	        staticClass: "center"
+	      }, [_c('th', {
+	        staticClass: "day center",
 	        class: {
 	          olds: (item.month != _vm.month[_vm.startingMonth % 12]),
-	            active: item.day == _vm.day && item.month == _vm.month[_vm.startingMonth % 12]
+	            active: item.day == _vm.day && item.month == _vm.currentMonth
 	        },
 	        on: {
 	          "click": function($event) {
