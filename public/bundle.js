@@ -15740,20 +15740,20 @@
 	        calendarDays[i].year = 0;
 	    }
 	    for (var _i = 1; _i <= daysInMonth(y)[m % 12]; _i++) {
-	        calendarDays[_i - 1 + s].day = _i;
-	        calendarDays[_i - 1 + s].month = monthToName[m % 12];
-	        calendarDays[_i - 1 + s].year = y;
+	        calendarDays[_i - 1 + s % 7].day = _i;
+	        calendarDays[_i - 1 + s % 7].month = monthToName[m % 12];
+	        calendarDays[_i - 1 + s % 7].year = y;
 	    }
-	    for (var j = 1; j <= 42 - (s + daysInMonth(y)[m % 12]); j++) {
-	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1].day = j;
-	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1].month = monthToName[(m + 1) % 12];
-	        if (calendarDays[j + s + daysInMonth(y)[m % 12] - 1].month == 'January') {
-	            calendarDays[j + s + daysInMonth(y)[m % 12] - 1].year = y + 1;
+	    for (var j = 1; j <= 42 - (s % 7 + daysInMonth(y)[m % 12]); j++) {
+	        calendarDays[j + s % 7 + daysInMonth(y)[m % 12] - 1].day = j;
+	        calendarDays[j + s % 7 + daysInMonth(y)[m % 12] - 1].month = monthToName[(m + 1) % 12];
+	        if (calendarDays[j + s % 7 + daysInMonth(y)[m % 12] - 1].month == 'January') {
+	            calendarDays[j + s % 7 + daysInMonth(y)[m % 12] - 1].year = y + 1;
 	        } else {
-	            calendarDays[j + s + daysInMonth(y)[m % 12] - 1].year = y;
+	            calendarDays[j + s % 7 + daysInMonth(y)[m % 12] - 1].year = y;
 	        }
 	    }
-	    for (var _i2 = s - 1; _i2 >= 0; _i2--) {
+	    for (var _i2 = s % 7 - 1; _i2 >= 0; _i2--) {
 	        calendarDays[_i2].day = daysInMonth(y)[(m - 1) % 12] - end;
 	        calendarDays[_i2].month = monthToName[(m - 1) % 12];
 	        if (calendarDays[_i2].month == 'December') {
@@ -33421,7 +33421,7 @@
 	        _vm.startingDay = _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 28 ? _vm.startingDay : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 29 ? _vm.startingDay + 1 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 30 ? _vm.startingDay + 2 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 31 ? _vm.startingDay + 3 : _vm.startingDay;
 	      }
 	    }
-	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay % 7)), function(array) {
+	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay)), function(array) {
 	    return _c('tr', _vm._l((array), function(item) {
 	      return _c('td', [_c('th', {
 	        staticClass: "day",

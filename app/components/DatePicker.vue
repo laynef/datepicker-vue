@@ -30,7 +30,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr v-for="array in func(startingMonth, year, startingDay % 7)">
+                      <tr v-for="array in func(startingMonth, year, startingDay)">
                           <td v-for="item in array">
                               <th 
                               v-on:click="
@@ -92,20 +92,20 @@ const viewCalendar = (m,y,s) => {
         calendarDays[i].year = 0
     }
     for (let i = 1; i <= daysInMonth(y)[m % 12]; i++) {
-        calendarDays[i - 1 + s].day = i
-        calendarDays[i - 1 + s].month = monthToName[m % 12]
-        calendarDays[i - 1 + s].year = y
+        calendarDays[i - 1 + (s % 7)].day = i
+        calendarDays[i - 1 + (s % 7)].month = monthToName[m % 12]
+        calendarDays[i - 1 + (s % 7)].year = y
     }
-    for (let j = 1; j <= (42 - (s + daysInMonth(y)[(m) % 12])); j++) {
-        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].day = j
-        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month = monthToName[(m + 1) % 12] 
-        if (calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month == 'January') {
-            calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].year = y + 1
+    for (let j = 1; j <= (42 - ((s % 7)+ daysInMonth(y)[(m) % 12])); j++) {
+        calendarDays[j + (s % 7)+ daysInMonth(y)[(m) % 12] - 1].day = j
+        calendarDays[j + (s % 7)+ daysInMonth(y)[(m) % 12] - 1].month = monthToName[(m + 1) % 12] 
+        if (calendarDays[j + (s % 7)+ daysInMonth(y)[(m) % 12] - 1].month == 'January') {
+            calendarDays[j + (s % 7)+ daysInMonth(y)[(m) % 12] - 1].year = y + 1
         } else {
-            calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].year = y
+            calendarDays[j + (s % 7)+ daysInMonth(y)[(m) % 12] - 1].year = y
         }
     }
-    for (let i = s - 1; i >= 0; i--) {
+    for (let i = (s % 7)- 1; i >= 0; i--) {
         calendarDays[i].day = daysInMonth(y)[(m - 1) % 12] - end
         calendarDays[i].month = monthToName[(m - 1) % 12]
         if (calendarDays[i].month == 'December') {
