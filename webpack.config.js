@@ -46,13 +46,7 @@ module.exports = {
 resolve: {
     extensions: ['', '.js', '.vue']
   },
-  htmlLoader: {
-      ignoreCustomFragments: [/\{\{.*?}}/],
-      root: path.resolve(__dirname + '/public'),
-      attrs: ['img:src', 'link:href']
-  },
   plugins: [
-    new ExtractTextPlugin("public/main.css", { allChunks: true }),
-    new HtmlWebpackPlugin({template: 'public/index.html'})
+    new ExtractTextPlugin("public/main.css", { allChunks: true })
   ]
 }

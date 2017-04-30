@@ -1,6 +1,6 @@
 <template>
     <div class="datepicker">
-      <div class="datepicker datepicker-orient-left datepicker-orient-bottom dates">
+      <div id="dates" class="datepicker datepicker-orient-left datepicker-orient-bottom dates">
           <div class="datepicker-days" style="display: block;">
               <table class=" table-condensed">
                   <thead>
@@ -45,9 +45,7 @@
                     <div class="col-md-12">
                     <div class="form-group form-group-default input-group col-sm-12">
                       <label>Check In</label>
-                      <input type="email" class="form-control" id="datepicker-component2" placeholder="Pick a date">
-                        {{day ? month[startingMonth  % 12] + '/' + day + '/' + year : "Pick a date"}}
-                      </input>
+                      <input type="email" class="form-control" :value="day ? month[startingMonth  % 12] + '/' + day + '/' + year : null" id="datepicker-component2" placeholder="Pick a date">
                       <span class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </span>
@@ -59,15 +57,14 @@
           </div>
         </div>       
     </div>
-  </div>
 </template>
 
 <script>
-const _ = require('lodash')
+import _ from 'lodash'
+import $ from 'jquery'
 const isLeapYear = (year) => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
 const monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4:'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September', 9: 'October', 10: 'November', 11: 'December' }
 const daysInMonth = (year) => ({ 0: 31, 1: (isLeapYear(year) ? 29 : 28), 2: 31, 3: 30, 4: 31, 5: 30, 6: 31, 7: 31, 8: 30, 9: 31, 10: 30, 11: 31 })
-
 const viewCalendar = (m,y,s) => {
     let end = 0
     let calendarDays = {}
@@ -93,6 +90,7 @@ export default {
 
   },
  data () {
+
     return {
       year: 2017,
       month: monthToName,
@@ -108,15 +106,15 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
   .panel {
-    margin: 200px auto;
+    margin: 300px auto 0 auto;
     width: 50%;
     background-color: rgba(255,255,255,0.4);
   }
   .dates {
         display: block; 
-        top: 2671px; 
-        left: 122px;
         background-color: #f5f5f5;
         width: 240px;
+        float: right;
+        margin: 50px 400px 0 0;
     }
 </style>
