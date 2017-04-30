@@ -33392,7 +33392,10 @@
 	      "display": "block"
 	    }
 	  }, [_c('table', {
-	    staticClass: " table-condensed"
+	    staticClass: " table-condensed",
+	    staticStyle: {
+	      "cursor": "pointer"
+	    }
 	  }, [_c('thead', [_c('tr', [_c('th', {
 	    staticClass: "prev",
 	    staticStyle: {

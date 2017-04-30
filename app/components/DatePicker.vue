@@ -4,7 +4,7 @@
         class="datepicker datepicker-orient-left datepicker-orient-bottom dates"
         v-bind:class="{hidden: hidden}">
           <div class="datepicker-days" style="display: block;">
-              <table class=" table-condensed">
+              <table class=" table-condensed"  style="cursor:pointer">
                   <thead>
                       <tr>
                           <th class="prev" style="visibility: visible;" v-on:click="
@@ -165,10 +165,11 @@ export default {
     th {
         width: 20px;
     } 
-    th:hover {
+    tbody:hover tr:hover td:hover th:hover {
       background: #6d5cae;
       color: white;
       cursor: pointer;
+      cursor: hand;
     }
     .center {
         margin: 0 auto;

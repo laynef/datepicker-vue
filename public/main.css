@@ -44,10 +44,11 @@ h1[data-v-d9b08e82] {
 th[data-v-815a953c] {
   width: 20px;
 }
-th[data-v-815a953c]:hover {
+tbody:hover tr:hover td:hover th[data-v-815a953c]:hover {
     background: #6d5cae;
     color: white;
     cursor: pointer;
+    cursor: hand;
 }
 .center[data-v-815a953c] {
   margin: 0 auto;
