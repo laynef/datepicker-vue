@@ -15720,6 +15720,7 @@
 	//
 	//
 	//
+	//
 
 	var isLeapYear = function isLeapYear(year) {
 	    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
@@ -15734,19 +15735,31 @@
 	    for (var _i = 0; _i < 42; _i++) {
 	        calendarDays[_i] = {};
 	        calendarDays[_i].day = 0;
-	        calendarDays[_i]['month'] = '';
+	        calendarDays[_i].month = '';
+	        calendarDays[_i].year = 0;
 	    }
 	    for (var _i2 = 1; _i2 <= daysInMonth(y)[m % 12]; _i2++) {
 	        calendarDays[_i2 - 1 + s].day = _i2;
 	        calendarDays[_i2 - 1 + s].month = monthToName[m % 12];
+	        calendarDays[_i2 - 1 + s].year = y;
 	    }
 	    for (var j = 1; j <= 42 - (s + daysInMonth(y)[m % 12]); j++) {
 	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1].day = j;
-	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1].month = monthToName[m % 12 + 1];
+	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1].month = monthToName[(m + 1) % 12];
+	        if (calendarDays[j + s + daysInMonth(y)[m % 12] - 1].month == 'January') {
+	            calendarDays[j + s + daysInMonth(y)[m % 12] - 1].year = y + 1;
+	        } else {
+	            calendarDays[j + s + daysInMonth(y)[m % 12] - 1].year = y;
+	        }
 	    }
 	    for (var i = s - 1; i >= 0; i--) {
 	        calendarDays[i].day = daysInMonth(y)[(m - 1) % 12] - end;
 	        calendarDays[i].month = monthToName[(m - 1) % 12];
+	        if (calendarDays[i].month == 'December') {
+	            calendarDays[i].year = y - 1;
+	        } else {
+	            calendarDays[i].year = y;
+	        }
 	        end++;
 	    }
 	    return _lodash2.default.chunk((0, _values2.default)(calendarDays), 7);
@@ -15766,7 +15779,8 @@
 	            day: null,
 	            hidden: true,
 	            daysInMonth: daysInMonth,
-	            currentMonth: null
+	            currentMonth: null,
+	            currentYear: null
 	        };
 	    }
 	};
@@ -43676,6 +43690,7 @@
 	          "click": function($event) {
 	            _vm.day = item.day;
 	            _vm.currentMonth = item.month;
+	            _vm.currentYear = item.year;
 	            _vm.hidden = true;
 	          }
 	        }
@@ -43703,7 +43718,7 @@
 	      "placeholder": "Pick a date"
 	    },
 	    domProps: {
-	      "value": _vm.day ? _vm.currentMonth + '/' + _vm.day + '/' + _vm.year : null
+	      "value": _vm.day ? _vm.currentMonth + '/' + _vm.day + '/' + _vm.currentYear : null
 	    },
 	    on: {
 	      "click": function($event) {

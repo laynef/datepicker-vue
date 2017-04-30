@@ -37,6 +37,7 @@
                               <th v-on:click="
                               day = item.day;
                               currentMonth = item.month;
+                              currentYear = item.year;
                               hidden = true;
                               ">{{item.day}}</th>
                           </td>
@@ -55,7 +56,7 @@
                       <label>Check In</label>
                       <input type="email" 
                         class="form-control" 
-                        :value="day ? currentMonth + '/' + day + '/' + year : null" 
+                        :value="day ? currentMonth + '/' + day + '/' + currentYear : null" 
                         id="datepicker-component2" 
                         placeholder="Pick a date"
                         v-on:click="hidden = false;">
@@ -84,20 +85,31 @@ const viewCalendar = (m,y,s) => {
     for (let i = 0; i < 42; i++) {
         calendarDays[i] = {}
         calendarDays[i].day = 0
-        calendarDays[i]['month'] = ''
+        calendarDays[i].month = ''
+        calendarDays[i].year = 0
     }
     for (let i = 1; i <= daysInMonth(y)[m % 12]; i++) {
         calendarDays[i - 1 + s].day = i
         calendarDays[i - 1 + s].month = monthToName[m % 12]
-
+        calendarDays[i - 1 + s].year = y
     }
     for (var j = 1; j <= (42 - (s + daysInMonth(y)[(m) % 12])); j++) {
         calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].day = j
-        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month = monthToName[m % 12 + 1] 
+        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month = monthToName[(m + 1) % 12] 
+        if (calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month == 'January') {
+            calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].year = y + 1
+        } else {
+            calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].year = y
+        }
     }
     for (var i = s - 1; i >= 0; i--) {
         calendarDays[i].day = daysInMonth(y)[(m - 1) % 12] - end
         calendarDays[i].month = monthToName[(m - 1) % 12]
+        if (calendarDays[i].month == 'December') {
+            calendarDays[i].year = y - 1
+        } else {
+            calendarDays[i].year = y
+        }
         end++
     }
     return _.chunk(Object.values(calendarDays), 7)
@@ -119,7 +131,8 @@ export default {
       day: null,
       hidden: true,
       daysInMonth: daysInMonth,
-      currentMonth: null
+      currentMonth: null,
+      currentYear: null
     }
   }
 }
