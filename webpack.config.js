@@ -2,7 +2,6 @@
 // at all ....
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   // other options...
@@ -28,10 +27,6 @@ module.exports = {
           plugins: ['transform-runtime'],
           "comments": false
         }
-      },
-      {
-          test: /\.html$/,
-          loader: "html"
       }
     ]
   },

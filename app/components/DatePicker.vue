@@ -11,7 +11,7 @@
                           startingMonth--; 
                           startingMonth % 12 === 11 ? year-- : year;
                           startingDay = daysInMonth(year)[(startingMonth + 2) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth + 2) % 12] == 29 ? startingDay - 1 : daysInMonth(year)[(startingMonth + 2) % 12] == 30 ? startingDay - 2 : daysInMonth(year)[(startingMonth + 2) % 12] == 31 ? startingDay - 3 : startingDay; 
-                          startingDay = abs(startingDay) % 7;
+                          startingDay = startingDay % 7;
                           ">«</th>
                           <th colspan="5" class="datepicker-switch">{{month[startingMonth  % 12]}} {{year}}</th>
                           <th class="next" style="visibility: visible;" v-on:click="
@@ -33,18 +33,18 @@
                   </thead>
                   <tbody>
                       <tr v-for="array in func(startingMonth, year, startingDay % 7)">
-                          <td v-for="item in array"
-                                class="day"
-                                v-bind:class="{
-                                        'olds': item.month != month[startingMonth % 12],
-                                    }">
+                          <td v-for="item in array">
                               <th 
                               v-on:click="
                               day = item.day;
                               currentMonth = item.month;
                               currentYear = item.year;
                               hidden = true;
-                              ">{{item.day}}</th>
+                              "
+                              class="day"
+                              v-bind:class="{
+                                    olds: (item.month != month[startingMonth % 12])
+                                }">{{item.day}}</th>
                           </td>
                       </tr>
                   </tbody>
@@ -98,16 +98,16 @@ const viewCalendar = (m,y,s) => {
         calendarDays[i - 1 + s].month = monthToName[m % 12]
         calendarDays[i - 1 + s].year = y
     }
-    for (var j = 1; j <= (42 - (s + daysInMonth(y)[(m) % 12])); j++) {
+    for (let j = 1; j <= (42 - (s + daysInMonth(y)[(m) % 12])); j++) {
         calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].day = j
-        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month = monthToName[(m ) % 12] 
+        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month = monthToName[(m + 1) % 12] 
         if (calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month == 'January') {
             calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].year = y + 1
         } else {
             calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].year = y
         }
     }
-    for (var i = s - 1; i >= 0; i--) {
+    for (let i = s - 1; i >= 0; i--) {
         calendarDays[i].day = daysInMonth(y)[(m - 1) % 12] - end
         calendarDays[i].month = monthToName[(m - 1) % 12]
         if (calendarDays[i].month == 'December') {
@@ -137,14 +137,12 @@ export default {
       hidden: true,
       daysInMonth: daysInMonth,
       currentMonth: null,
-      currentYear: null,
-      abs: abs
+      currentYear: null
     }
   }
 }
 </script>
 
-<!-- STYLING HERE -->
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
   .panel {
@@ -163,6 +161,6 @@ export default {
         z-index: 1000;
     }
     .olds {
-        color: rgb(155, 155, 155);
+        color: rgb(175, 175, 175);
     }
 </style>
