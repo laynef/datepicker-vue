@@ -15722,8 +15722,6 @@
 	//
 	//
 	//
-	//
-	//
 
 	var monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4: 'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September', 9: 'October', 10: 'November', 11: 'December' };
 	var daysInMonth = function daysInMonth(year) {
@@ -33404,7 +33402,6 @@
 	        _vm.startingMonth--;
 	        _vm.startingMonth % 12 === 11 ? _vm.year-- : _vm.year;
 	        _vm.startingDay = _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 2) % 12] == 28 ? _vm.startingDay : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 2) % 12] == 29 ? _vm.startingDay - 1 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 2) % 12] == 30 ? _vm.startingDay - 2 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 2) % 12] == 31 ? _vm.startingDay - 3 : _vm.startingDay;
-	        _vm.startingDay = _vm.startingDay % 7;
 	      }
 	    }
 	  }, [_vm._v("«")]), _vm._v(" "), _c('th', {
@@ -33422,7 +33419,6 @@
 	        _vm.startingMonth++;
 	        _vm.startingMonth % 12 === 0 ? _vm.year++ : _vm.year;
 	        _vm.startingDay = _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 28 ? _vm.startingDay : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 29 ? _vm.startingDay + 1 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 30 ? _vm.startingDay + 2 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 31 ? _vm.startingDay + 3 : _vm.startingDay;
-	        _vm.startingDay = _vm.startingDay % 7;
 	      }
 	    }
 	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay % 7)), function(array) {

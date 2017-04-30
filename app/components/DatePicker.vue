@@ -11,14 +11,12 @@
                           startingMonth--; 
                           startingMonth % 12 === 11 ? year-- : year;
                           startingDay = daysInMonth(year)[(startingMonth + 2) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth + 2) % 12] == 29 ? startingDay - 1 : daysInMonth(year)[(startingMonth + 2) % 12] == 30 ? startingDay - 2 : daysInMonth(year)[(startingMonth + 2) % 12] == 31 ? startingDay - 3 : startingDay; 
-                          startingDay = startingDay % 7;
                           ">«</th>
                           <th colspan="5" class="datepicker-switch">{{month[startingMonth  % 12]}} {{year}}</th>
                           <th class="next" style="visibility: visible;" v-on:click="
                           startingMonth++; 
                           startingMonth % 12 === 0 ? year++ : year;
                           startingDay = daysInMonth(year)[(startingMonth - 1) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth - 1) % 12] == 29 ? startingDay + 1 : daysInMonth(year)[(startingMonth - 1) % 12] == 30 ? startingDay + 2 : daysInMonth(year)[(startingMonth - 1) % 12] == 31 ? startingDay + 3 : startingDay;
-                          startingDay = startingDay % 7;
                           ">»</th>
                       </tr>
                       <tr>
