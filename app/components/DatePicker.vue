@@ -143,6 +143,7 @@ export default {
 }
 </script>
 
+<!-- STYLING HERE -->
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
   .panel {
