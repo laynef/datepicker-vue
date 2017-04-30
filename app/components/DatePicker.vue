@@ -32,7 +32,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr v-for="array in func(startingMonth, year, startingDay)">
+                      <tr v-for="array in func(startingMonth, year, startingDay % 7)">
                           <td v-for="item in array"
                                 class="day"
                                 v-bind:class="{
@@ -65,7 +65,7 @@
                         id="datepicker-component2" 
                         placeholder="Pick a date"
                         v-on:click="hidden = !hidden;">
-                      <span class="input-group-addon" v-on:click="hidden = !hidden;"> {{startingDay}}
+                      <span class="input-group-addon" v-on:click="hidden = !hidden;">
                         <i class="fa fa-calendar"></i>
                       </span>
                     </div>
@@ -132,7 +132,7 @@ export default {
       month: monthToName,
       startingMonth: 24208,
       func: viewCalendar,
-      startingDay: 1,
+      startingDay: 700001,
       day: null,
       hidden: true,
       daysInMonth: daysInMonth,

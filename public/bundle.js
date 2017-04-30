@@ -15371,7 +15371,7 @@
 	  /* script */
 	  __webpack_require__(303),
 	  /* template */
-	  __webpack_require__(350),
+	  __webpack_require__(349),
 	  /* scopeId */
 	  null,
 	  /* cssModules */
@@ -15590,7 +15590,7 @@
 	  /* script */
 	  __webpack_require__(310),
 	  /* template */
-	  __webpack_require__(349),
+	  __webpack_require__(348),
 	  /* scopeId */
 	  "data-v-815a953c",
 	  /* cssModules */
@@ -15778,7 +15778,7 @@
 	            month: monthToName,
 	            startingMonth: 24208,
 	            func: viewCalendar,
-	            startingDay: 1,
+	            startingDay: 700001,
 	            day: null,
 	            hidden: true,
 	            daysInMonth: daysInMonth,
@@ -33374,8 +33374,7 @@
 
 
 /***/ }),
-/* 348 */,
-/* 349 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -33427,7 +33426,7 @@
 	        _vm.startingDay = _vm.startingDay % 7;
 	      }
 	    }
-	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay)), function(array) {
+	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay % 7)), function(array) {
 	    return _c('tr', _vm._l((array), function(item) {
 	      return _c('td', {
 	        staticClass: "day",
@@ -33510,7 +33509,7 @@
 	}
 
 /***/ }),
-/* 350 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
