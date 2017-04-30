@@ -26,6 +26,7 @@ h1[data-v-d9b08e82] {
   margin: 200px auto 0 auto;
   width: 50%;
   background-color: rgba(255, 255, 255, 0.4);
+  position: relative;
 }
 .dates[data-v-815a953c] {
   display: block;
@@ -34,4 +35,7 @@ h1[data-v-d9b08e82] {
   float: left;
   margin: 300px 340px;
   position: absolute;
+}
+.olds[data-v-815a953c] {
+  color: #9b9b9b;
 }

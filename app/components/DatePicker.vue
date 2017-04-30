@@ -36,7 +36,7 @@
                           <td v-for="item in array"
                                 class="day"
                                 v-bind:class="{
-                                        'old': item.month != month[startingMonth % 12],
+                                        'olds': item.month != month[startingMonth % 12],
                                     }">
                               <th 
                               v-on:click="
@@ -80,7 +80,6 @@
 
 <script>
 import _ from 'lodash'
-import $ from 'jquery'
 const isLeapYear = (year) => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
 const monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4:'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September', 9: 'October', 10: 'November', 11: 'December' }
 const daysInMonth = (year) => ({ 0: 31, 1: (isLeapYear(year) ? 29 : 28), 2: 31, 3: 30, 4: 31, 5: 30, 6: 31, 7: 31, 8: 30, 9: 31, 10: 30, 11: 31 })
@@ -150,6 +149,7 @@ export default {
     margin: 200px auto 0 auto;
     width: 50%;
     background-color: rgba(255,255,255,0.4);
+    position: relative;
   }
   .dates {
         display: block; 
@@ -158,5 +158,8 @@ export default {
         float: left;
         margin: 300px 340px;
         position: absolute;
+    }
+    .olds {
+        color: rgb(155, 155, 155);
     }
 </style>
