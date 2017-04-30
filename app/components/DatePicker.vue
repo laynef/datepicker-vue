@@ -164,12 +164,6 @@ export default {
     }
     th {
         width: 20px;
-    } 
-    tbody:hover tr:hover td:hover th:hover {
-      background: #6d5cae;
-      color: white;
-      cursor: pointer;
-      cursor: hand;
     }
     .center {
         margin: 0 auto;
@@ -180,5 +174,8 @@ export default {
         color: white;
         width: 20px;
         margin: 0 auto;
+    }
+    .day:hover {
+        background-color: rgb(205,205,205);
     }
 </style>
