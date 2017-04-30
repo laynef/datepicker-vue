@@ -1,6 +1,8 @@
 <template>
     <div class="datepicker">
-      <div id="dates" class="datepicker datepicker-orient-left datepicker-orient-bottom dates">
+      <div id="dates" 
+        class="datepicker datepicker-orient-left datepicker-orient-bottom dates"
+        v-bind:class="{hidden: hidden}">
           <div class="datepicker-days" style="display: block;">
               <table class=" table-condensed">
                   <thead>
@@ -30,7 +32,10 @@
                   <tbody>
                       <tr v-for="array in func(startingMonth, year, startingDay)">
                           <td class="day" v-for="item in array">
-                              <th v-on:click="day = item">{{item}}</th>
+                              <th v-on:click="
+                              day = item;
+                              hidden = true;
+                              ">{{item}}</th>
                           </td>
                       </tr>
                   </tbody>
@@ -45,9 +50,14 @@
                     <div class="col-md-12">
                     <div class="form-group form-group-default input-group col-sm-12">
                       <label>Check In</label>
-                      <input type="email" class="form-control" :value="day ? month[startingMonth  % 12] + '/' + day + '/' + year : null" id="datepicker-component2" placeholder="Pick a date">
+                      <input type="email" 
+                        class="form-control" 
+                        :value="day ? month[startingMonth  % 12] + '/' + day + '/' + year : null" 
+                        id="datepicker-component2" 
+                        placeholder="Pick a date"
+                        v-on:click="hidden = false;">
                       <span class="input-group-addon">
-                        <i class="fa fa-calendar"></i>
+                        <i class="fa fa-calendar"></i> {{startingDay}}
                       </span>
                     </div>
                   </div>
@@ -97,7 +107,8 @@ export default {
       startingMonth: 24208,
       func: viewCalendar,
       startingDay: 1,
-      day: null
+      day: null,
+      hidden: true
     }
   }
 }

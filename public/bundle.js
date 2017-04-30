@@ -15707,6 +15707,16 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 
 	var isLeapYear = function isLeapYear(year) {
 	    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
@@ -15745,7 +15755,8 @@
 	            startingMonth: 24208,
 	            func: viewCalendar,
 	            startingDay: 1,
-	            day: null
+	            day: null,
+	            hidden: true
 	        };
 	    }
 	};
@@ -43602,6 +43613,9 @@
 	    staticClass: "datepicker"
 	  }, [_c('div', {
 	    staticClass: "datepicker datepicker-orient-left datepicker-orient-bottom dates",
+	    class: {
+	      hidden: _vm.hidden
+	    },
 	    attrs: {
 	      "id": "dates"
 	    }
@@ -43648,7 +43662,8 @@
 	      }, [_c('th', {
 	        on: {
 	          "click": function($event) {
-	            _vm.day = item
+	            _vm.day = item;
+	            _vm.hidden = true;
 	          }
 	        }
 	      }, [_vm._v(_vm._s(item))])])
@@ -43676,8 +43691,17 @@
 	    },
 	    domProps: {
 	      "value": _vm.day ? _vm.month[_vm.startingMonth % 12] + '/' + _vm.day + '/' + _vm.year : null
+	    },
+	    on: {
+	      "click": function($event) {
+	        _vm.hidden = false;
+	      }
 	    }
-	  }), _vm._v(" "), _vm._m(1)])])])])])])])
+	  }), _vm._v(" "), _c('span', {
+	    staticClass: "input-group-addon"
+	  }, [_c('i', {
+	    staticClass: "fa fa-calendar"
+	  }), _vm._v(" " + _vm._s(_vm.startingDay) + "\n                  ")])])])])])])])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('tr', [_c('th', {
 	    staticClass: "dow"
@@ -43694,12 +43718,6 @@
 	  }, [_vm._v("Fr")]), _vm._v(" "), _c('th', {
 	    staticClass: "dow"
 	  }, [_vm._v("Sa")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
-	    staticClass: "input-group-addon"
-	  }, [_c('i', {
-	    staticClass: "fa fa-calendar"
-	  })])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
