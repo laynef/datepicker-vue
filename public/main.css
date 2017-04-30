@@ -22,6 +22,7 @@ h1[data-v-d9b08e82] {
   margin-top: 60px;
 }
 
+@charset "UTF-8";
 .panel[data-v-815a953c] {
   margin: 200px auto 0 auto;
   width: 50%;
@@ -39,4 +40,13 @@ h1[data-v-d9b08e82] {
 }
 .olds[data-v-815a953c] {
   color: #afafaf;
+}
+th th[data-v-815a953c]:hover {
+    background: #6d5cae;
+    color: white;
+    cursor: pointer;
+}
+.active[data-v-815a953c] {
+  background-color: #6d5cae;
+  color: white;
 }

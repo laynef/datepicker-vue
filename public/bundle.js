@@ -15722,6 +15722,7 @@
 	//
 	//
 	//
+	//
 
 	var monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4: 'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September', 9: 'October', 10: 'November', 11: 'December' };
 	var daysInMonth = function daysInMonth(year) {
@@ -33426,7 +33427,8 @@
 	      return _c('td', [_c('th', {
 	        staticClass: "day",
 	        class: {
-	          olds: (item.month != _vm.month[_vm.startingMonth % 12])
+	          olds: (item.month != _vm.month[_vm.startingMonth % 12]),
+	            active: item.day == _vm.day && item.month == _vm.month[_vm.startingMonth % 12]
 	        },
 	        on: {
 	          "click": function($event) {

@@ -41,7 +41,8 @@
                               "
                               class="day"
                               v-bind:class="{
-                                    olds: (item.month != month[startingMonth % 12])
+                                    olds: (item.month != month[startingMonth % 12]),
+                                    active: item.day == day && item.month == month[startingMonth % 12]
                                 }">{{item.day}}</th>
                           </td>
                       </tr>
@@ -160,5 +161,14 @@ export default {
     }
     .olds {
         color: rgb(175, 175, 175);
+    }
+    th th:hover {
+      background: #6d5cae;
+      color: white;
+      cursor: pointer;
+    }
+    .active {
+        background-color: #6d5cae;
+        color: white;
     }
 </style>
