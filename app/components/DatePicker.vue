@@ -10,8 +10,8 @@
                           <th class="prev" style="visibility: visible;" v-on:click="
                           startingMonth--; 
                           startingMonth % 12 === 11 ? year-- : year;
-                          startingDay = daysInMonth(year)[(startingMonth ) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth ) % 12] == 29 ? startingDay - 1 : daysInMonth(year)[(startingMonth ) % 12] == 30 ? startingDay - 2 : daysInMonth(year)[(startingMonth ) % 12] == 31 ? startingDay - 3 : startingDay; 
-                          startingDay = Math.abs(startingDay % 7);
+                          startingDay = daysInMonth(year)[(startingMonth + 2) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth + 2) % 12] == 29 ? startingDay - 1 : daysInMonth(year)[(startingMonth + 2) % 12] == 30 ? startingDay - 2 : daysInMonth(year)[(startingMonth + 2) % 12] == 31 ? startingDay - 3 : startingDay; 
+                          startingDay = abs(startingDay) % 7;
                           ">«</th>
                           <th colspan="5" class="datepicker-switch">{{month[startingMonth  % 12]}} {{year}}</th>
                           <th class="next" style="visibility: visible;" v-on:click="
@@ -65,7 +65,7 @@
                         id="datepicker-component2" 
                         placeholder="Pick a date"
                         v-on:click="hidden = !hidden;">
-                      <span class="input-group-addon" v-on:click="hidden = !hidden;">
+                      <span class="input-group-addon" v-on:click="hidden = !hidden;"> {{startingDay}}
                         <i class="fa fa-calendar"></i>
                       </span>
                     </div>
@@ -83,6 +83,7 @@ import _ from 'lodash'
 const isLeapYear = (year) => (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0
 const monthToName = { 0: 'January', 1: 'Febrauary', 2: 'March', 3: 'April', 4:'May', 5: 'June', 6: 'July', 7: 'August', 8: 'September', 9: 'October', 10: 'November', 11: 'December' }
 const daysInMonth = (year) => ({ 0: 31, 1: (isLeapYear(year) ? 29 : 28), 2: 31, 3: 30, 4: 31, 5: 30, 6: 31, 7: 31, 8: 30, 9: 31, 10: 30, 11: 31 })
+const abs = (num) => num < 0 ? num *= - 1 : num 
 const viewCalendar = (m,y,s) => {
     let end = 0
     let calendarDays = {}
@@ -99,7 +100,7 @@ const viewCalendar = (m,y,s) => {
     }
     for (var j = 1; j <= (42 - (s + daysInMonth(y)[(m) % 12])); j++) {
         calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].day = j
-        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month = monthToName[(m + 1) % 12] 
+        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month = monthToName[(m ) % 12] 
         if (calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month == 'January') {
             calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].year = y + 1
         } else {
@@ -136,7 +137,8 @@ export default {
       hidden: true,
       daysInMonth: daysInMonth,
       currentMonth: null,
-      currentYear: null
+      currentYear: null,
+      abs: abs
     }
   }
 }
@@ -156,8 +158,9 @@ export default {
         background-color: #f5f5f5;
         width: 240px;
         float: left;
-        margin: 300px 340px;
+        margin: 315px 340px;
         position: absolute;
+        z-index: 1000;
     }
     .olds {
         color: rgb(155, 155, 155);
