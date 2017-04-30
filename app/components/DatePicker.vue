@@ -64,7 +64,7 @@
                         :value="day ? currentMonth + '/' + day + '/' + currentYear : null" 
                         id="datepicker-component2" 
                         placeholder="Pick a date"
-                        v-on:click="hidden = false;">
+                        v-on:click="hidden = !hidden;">
                       <span class="input-group-addon" v-on:click="hidden = !hidden;">
                         <i class="fa fa-calendar"></i>
                       </span>

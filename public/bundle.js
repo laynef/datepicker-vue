@@ -43730,7 +43730,7 @@
 	    },
 	    on: {
 	      "click": function($event) {
-	        _vm.hidden = false;
+	        _vm.hidden = !_vm.hidden;
 	      }
 	    }
 	  }), _vm._v(" "), _c('span', {
