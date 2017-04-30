@@ -65,7 +65,7 @@
                         id="datepicker-component2" 
                         placeholder="Pick a date"
                         v-on:click="hidden = false;">
-                      <span class="input-group-addon">
+                      <span class="input-group-addon" v-on:click="hidden = !hidden;">
                         <i class="fa fa-calendar"></i>
                       </span>
                     </div>
@@ -146,7 +146,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
   .panel {
-    margin: 300px auto 0 auto;
+    margin: 200px auto 0 auto;
     width: 50%;
     background-color: rgba(255,255,255,0.4);
   }
@@ -154,7 +154,8 @@ export default {
         display: block; 
         background-color: #f5f5f5;
         width: 240px;
-        float: right;
-        margin: 50px 400px 0 0;
+        float: left;
+        margin: 300px 340px;
+        position: absolute;
     }
 </style>

@@ -43733,7 +43733,16 @@
 	        _vm.hidden = false;
 	      }
 	    }
-	  }), _vm._v(" "), _vm._m(1)])])])])])])])
+	  }), _vm._v(" "), _c('span', {
+	    staticClass: "input-group-addon",
+	    on: {
+	      "click": function($event) {
+	        _vm.hidden = !_vm.hidden;
+	      }
+	    }
+	  }, [_c('i', {
+	    staticClass: "fa fa-calendar"
+	  })])])])])])])])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('tr', [_c('th', {
 	    staticClass: "dow"
@@ -43750,12 +43759,6 @@
 	  }, [_vm._v("Fr")]), _vm._v(" "), _c('th', {
 	    staticClass: "dow"
 	  }, [_vm._v("Sa")])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
-	    staticClass: "input-group-addon"
-	  }, [_c('i', {
-	    staticClass: "fa fa-calendar"
-	  })])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
