@@ -15721,6 +15721,11 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
 
 	var isLeapYear = function isLeapYear(year) {
 	    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
@@ -43684,7 +43689,10 @@
 	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay)), function(array) {
 	    return _c('tr', _vm._l((array), function(item) {
 	      return _c('td', {
-	        staticClass: "day"
+	        staticClass: "day",
+	        class: {
+	          'old': item.month != _vm.month[_vm.startingMonth % 12],
+	        }
 	      }, [_c('th', {
 	        on: {
 	          "click": function($event) {

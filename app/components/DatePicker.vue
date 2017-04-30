@@ -33,8 +33,13 @@
                   </thead>
                   <tbody>
                       <tr v-for="array in func(startingMonth, year, startingDay)">
-                          <td class="day" v-for="item in array">
-                              <th v-on:click="
+                          <td v-for="item in array"
+                                class="day"
+                                v-bind:class="{
+                                        'old': item.month != month[startingMonth % 12],
+                                    }">
+                              <th 
+                              v-on:click="
                               day = item.day;
                               currentMonth = item.month;
                               currentYear = item.year;
