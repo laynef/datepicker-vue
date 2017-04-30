@@ -10,7 +10,7 @@
                           <th class="prev" style="visibility: visible;" v-on:click="
                           startingMonth--; 
                           startingMonth % 12 === 11 ? year-- : year;
-                          startingDay = daysInMonth(year)[(startingMonth + 1) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth + 1) % 12] == 29 ? startingDay - 1 : daysInMonth(year)[(startingMonth + 1) % 12] == 30 ? startingDay - 2 : daysInMonth(year)[(startingMonth + 1) % 12] == 31 ? startingDay - 3 : startingDay; 
+                          startingDay = daysInMonth(year)[(startingMonth ) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth ) % 12] == 29 ? startingDay - 1 : daysInMonth(year)[(startingMonth ) % 12] == 30 ? startingDay - 2 : daysInMonth(year)[(startingMonth ) % 12] == 31 ? startingDay - 3 : startingDay; 
                           startingDay = Math.abs(startingDay % 7);
                           ">«</th>
                           <th colspan="5" class="datepicker-switch">{{month[startingMonth  % 12]}} {{year}}</th>
@@ -35,9 +35,10 @@
                       <tr v-for="array in func(startingMonth, year, startingDay)">
                           <td class="day" v-for="item in array">
                               <th v-on:click="
-                              day = item;
+                              day = item.day;
+                              currentMonth = item.month;
                               hidden = true;
-                              ">{{item}}</th>
+                              ">{{item.day}}</th>
                           </td>
                       </tr>
                   </tbody>
@@ -54,12 +55,12 @@
                       <label>Check In</label>
                       <input type="email" 
                         class="form-control" 
-                        :value="day ? month[startingMonth  % 12] + '/' + day + '/' + year : null" 
+                        :value="day ? currentMonth + '/' + day + '/' + year : null" 
                         id="datepicker-component2" 
                         placeholder="Pick a date"
                         v-on:click="hidden = false;">
                       <span class="input-group-addon">
-                        <i class="fa fa-calendar"></i> {{startingDay}}
+                        <i class="fa fa-calendar"></i>
                       </span>
                     </div>
                   </div>
@@ -81,16 +82,22 @@ const viewCalendar = (m,y,s) => {
     let end = 0
     let calendarDays = {}
     for (let i = 0; i < 42; i++) {
-        calendarDays[i] = 0
+        calendarDays[i] = {}
+        calendarDays[i].day = 0
+        calendarDays[i]['month'] = ''
     }
     for (let i = 1; i <= daysInMonth(y)[m % 12]; i++) {
-        calendarDays[i - 1 + s] = i
+        calendarDays[i - 1 + s].day = i
+        calendarDays[i - 1 + s].month = monthToName[m % 12]
+
     }
     for (var j = 1; j <= (42 - (s + daysInMonth(y)[(m) % 12])); j++) {
-        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1] = j
+        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].day = j
+        calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1].month = monthToName[m % 12 + 1] 
     }
     for (var i = s - 1; i >= 0; i--) {
-        calendarDays[i] = daysInMonth(y)[(m - 1) % 12] - end
+        calendarDays[i].day = daysInMonth(y)[(m - 1) % 12] - end
+        calendarDays[i].month = monthToName[(m - 1) % 12]
         end++
     }
     return _.chunk(Object.values(calendarDays), 7)
@@ -111,7 +118,8 @@ export default {
       startingDay: 1,
       day: null,
       hidden: true,
-      daysInMonth: daysInMonth
+      daysInMonth: daysInMonth,
+      currentMonth: null
     }
   }
 }

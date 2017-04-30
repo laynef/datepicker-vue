@@ -15719,6 +15719,7 @@
 	//
 	//
 	//
+	//
 
 	var isLeapYear = function isLeapYear(year) {
 	    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
@@ -15731,16 +15732,21 @@
 	    var end = 0;
 	    var calendarDays = {};
 	    for (var _i = 0; _i < 42; _i++) {
-	        calendarDays[_i] = 0;
+	        calendarDays[_i] = {};
+	        calendarDays[_i].day = 0;
+	        calendarDays[_i]['month'] = '';
 	    }
 	    for (var _i2 = 1; _i2 <= daysInMonth(y)[m % 12]; _i2++) {
-	        calendarDays[_i2 - 1 + s] = _i2;
+	        calendarDays[_i2 - 1 + s].day = _i2;
+	        calendarDays[_i2 - 1 + s].month = monthToName[m % 12];
 	    }
 	    for (var j = 1; j <= 42 - (s + daysInMonth(y)[m % 12]); j++) {
-	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1] = j;
+	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1].day = j;
+	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1].month = monthToName[m % 12 + 1];
 	    }
 	    for (var i = s - 1; i >= 0; i--) {
-	        calendarDays[i] = daysInMonth(y)[(m - 1) % 12] - end;
+	        calendarDays[i].day = daysInMonth(y)[(m - 1) % 12] - end;
+	        calendarDays[i].month = monthToName[(m - 1) % 12];
 	        end++;
 	    }
 	    return _lodash2.default.chunk((0, _values2.default)(calendarDays), 7);
@@ -15759,7 +15765,8 @@
 	            startingDay: 1,
 	            day: null,
 	            hidden: true,
-	            daysInMonth: daysInMonth
+	            daysInMonth: daysInMonth,
+	            currentMonth: null
 	        };
 	    }
 	};
@@ -43638,7 +43645,7 @@
 	      "click": function($event) {
 	        _vm.startingMonth--;
 	        _vm.startingMonth % 12 === 11 ? _vm.year-- : _vm.year;
-	        _vm.startingDay = _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 1) % 12] == 28 ? _vm.startingDay : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 1) % 12] == 29 ? _vm.startingDay - 1 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 1) % 12] == 30 ? _vm.startingDay - 2 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 1) % 12] == 31 ? _vm.startingDay - 3 : _vm.startingDay;
+	        _vm.startingDay = _vm.daysInMonth(_vm.year)[(_vm.startingMonth) % 12] == 28 ? _vm.startingDay : _vm.daysInMonth(_vm.year)[(_vm.startingMonth) % 12] == 29 ? _vm.startingDay - 1 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth) % 12] == 30 ? _vm.startingDay - 2 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth) % 12] == 31 ? _vm.startingDay - 3 : _vm.startingDay;
 	        _vm.startingDay = Math.abs(_vm.startingDay % 7);
 	      }
 	    }
@@ -43667,11 +43674,12 @@
 	      }, [_c('th', {
 	        on: {
 	          "click": function($event) {
-	            _vm.day = item;
+	            _vm.day = item.day;
+	            _vm.currentMonth = item.month;
 	            _vm.hidden = true;
 	          }
 	        }
-	      }, [_vm._v(_vm._s(item))])])
+	      }, [_vm._v(_vm._s(item.day))])])
 	    }))
 	  }))])])]), _vm._v(" "), _c('div', {
 	    staticClass: "panel panel-default"
@@ -43695,18 +43703,14 @@
 	      "placeholder": "Pick a date"
 	    },
 	    domProps: {
-	      "value": _vm.day ? _vm.month[_vm.startingMonth % 12] + '/' + _vm.day + '/' + _vm.year : null
+	      "value": _vm.day ? _vm.currentMonth + '/' + _vm.day + '/' + _vm.year : null
 	    },
 	    on: {
 	      "click": function($event) {
 	        _vm.hidden = false;
 	      }
 	    }
-	  }), _vm._v(" "), _c('span', {
-	    staticClass: "input-group-addon"
-	  }, [_c('i', {
-	    staticClass: "fa fa-calendar"
-	  }), _vm._v(" " + _vm._s(_vm.startingDay) + "\n                  ")])])])])])])])])
+	  }), _vm._v(" "), _vm._m(1)])])])])])])])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('tr', [_c('th', {
 	    staticClass: "dow"
@@ -43723,6 +43727,12 @@
 	  }, [_vm._v("Fr")]), _vm._v(" "), _c('th', {
 	    staticClass: "dow"
 	  }, [_vm._v("Sa")])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('span', {
+	    staticClass: "input-group-addon"
+	  }, [_c('i', {
+	    staticClass: "fa fa-calendar"
+	  })])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
