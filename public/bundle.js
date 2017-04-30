@@ -15717,6 +15717,8 @@
 	//
 	//
 	//
+	//
+	//
 
 	var isLeapYear = function isLeapYear(year) {
 	    return year % 4 === 0 && year % 100 !== 0 || year % 400 === 0;
@@ -15728,13 +15730,13 @@
 	var viewCalendar = function viewCalendar(m, y, s) {
 	    var end = 0;
 	    var calendarDays = {};
-	    for (var _i = 0; _i < 35; _i++) {
+	    for (var _i = 0; _i < 42; _i++) {
 	        calendarDays[_i] = 0;
 	    }
 	    for (var _i2 = 1; _i2 <= daysInMonth(y)[m % 12]; _i2++) {
 	        calendarDays[_i2 - 1 + s] = _i2;
 	    }
-	    for (var j = 1; j <= 35 - (s + daysInMonth(y)[m % 12]); j++) {
+	    for (var j = 1; j <= 42 - (s + daysInMonth(y)[m % 12]); j++) {
 	        calendarDays[j + s + daysInMonth(y)[m % 12] - 1] = j;
 	    }
 	    for (var i = s - 1; i >= 0; i--) {
@@ -15756,7 +15758,8 @@
 	            func: viewCalendar,
 	            startingDay: 1,
 	            day: null,
-	            hidden: true
+	            hidden: true,
+	            daysInMonth: daysInMonth
 	        };
 	    }
 	};
@@ -43635,7 +43638,8 @@
 	      "click": function($event) {
 	        _vm.startingMonth--;
 	        _vm.startingMonth % 12 === 11 ? _vm.year-- : _vm.year;
-	        _vm.startingDay = _vm.func(_vm.startingMonth, _vm.year, _vm.startingDay)[4].indexOf(1) + 1;
+	        _vm.startingDay = _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 1) % 12] == 28 ? _vm.startingDay : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 1) % 12] == 29 ? _vm.startingDay - 1 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 1) % 12] == 30 ? _vm.startingDay - 2 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth + 1) % 12] == 31 ? _vm.startingDay - 3 : _vm.startingDay;
+	        _vm.startingDay = Math.abs(_vm.startingDay % 7);
 	      }
 	    }
 	  }, [_vm._v("«")]), _vm._v(" "), _c('th', {
@@ -43652,7 +43656,8 @@
 	      "click": function($event) {
 	        _vm.startingMonth++;
 	        _vm.startingMonth % 12 === 0 ? _vm.year++ : _vm.year;
-	        _vm.startingDay = _vm.func(_vm.startingMonth, _vm.year, _vm.startingDay)[4].indexOf(1) + 1;
+	        _vm.startingDay = _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 28 ? _vm.startingDay : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 29 ? _vm.startingDay + 1 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 30 ? _vm.startingDay + 2 : _vm.daysInMonth(_vm.year)[(_vm.startingMonth - 1) % 12] == 31 ? _vm.startingDay + 3 : _vm.startingDay;
+	        _vm.startingDay = _vm.startingDay % 7;
 	      }
 	    }
 	  }, [_vm._v("»")])]), _vm._v(" "), _vm._m(0)]), _vm._v(" "), _c('tbody', _vm._l((_vm.func(_vm.startingMonth, _vm.year, _vm.startingDay)), function(array) {

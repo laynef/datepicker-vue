@@ -10,13 +10,15 @@
                           <th class="prev" style="visibility: visible;" v-on:click="
                           startingMonth--; 
                           startingMonth % 12 === 11 ? year-- : year;
-                          startingDay = func(startingMonth, year, startingDay)[4].indexOf(1) + 1;
+                          startingDay = daysInMonth(year)[(startingMonth + 1) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth + 1) % 12] == 29 ? startingDay - 1 : daysInMonth(year)[(startingMonth + 1) % 12] == 30 ? startingDay - 2 : daysInMonth(year)[(startingMonth + 1) % 12] == 31 ? startingDay - 3 : startingDay; 
+                          startingDay = Math.abs(startingDay % 7);
                           ">«</th>
                           <th colspan="5" class="datepicker-switch">{{month[startingMonth  % 12]}} {{year}}</th>
                           <th class="next" style="visibility: visible;" v-on:click="
                           startingMonth++; 
                           startingMonth % 12 === 0 ? year++ : year;
-                          startingDay = func(startingMonth, year, startingDay)[4].indexOf(1) + 1;
+                          startingDay = daysInMonth(year)[(startingMonth - 1) % 12] == 28 ? startingDay : daysInMonth(year)[(startingMonth - 1) % 12] == 29 ? startingDay + 1 : daysInMonth(year)[(startingMonth - 1) % 12] == 30 ? startingDay + 2 : daysInMonth(year)[(startingMonth - 1) % 12] == 31 ? startingDay + 3 : startingDay;
+                          startingDay = startingDay % 7;
                           ">»</th>
                       </tr>
                       <tr>
@@ -65,7 +67,7 @@
               </div>
             </div>
           </div>
-        </div>       
+        </div>      
     </div>
 </template>
 
@@ -78,13 +80,13 @@ const daysInMonth = (year) => ({ 0: 31, 1: (isLeapYear(year) ? 29 : 28), 2: 31, 
 const viewCalendar = (m,y,s) => {
     let end = 0
     let calendarDays = {}
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 42; i++) {
         calendarDays[i] = 0
     }
     for (let i = 1; i <= daysInMonth(y)[m % 12]; i++) {
         calendarDays[i - 1 + s] = i
     }
-    for (var j = 1; j <= (35 - (s + daysInMonth(y)[(m) % 12])); j++) {
+    for (var j = 1; j <= (42 - (s + daysInMonth(y)[(m) % 12])); j++) {
         calendarDays[j + s + daysInMonth(y)[(m) % 12] - 1] = j
     }
     for (var i = s - 1; i >= 0; i--) {
@@ -108,7 +110,8 @@ export default {
       func: viewCalendar,
       startingDay: 1,
       day: null,
-      hidden: true
+      hidden: true,
+      daysInMonth: daysInMonth
     }
   }
 }
